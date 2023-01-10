@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 import tensorflow_hub as hub
 import matplotlib.image as mpimg
 
+from io import BytesIO
+import base64
+
 
 STYLES = {
     "style1": "style1.jpeg",
@@ -14,7 +17,7 @@ STYLES = {
     "style4": "style4.jpeg",
     
 }
-path = "/styles/"
+path = "styles/"
 
 def generate_style(style,image):
     if image:
@@ -39,6 +42,17 @@ def generate_style(style,image):
     return img
 
 
+def get_image_download_link(img): 
+    """
+    Generates a link allowing the PIL image to be downloaded
+    in:  PIL image
+    out: href string
+    """
+    buffered = BytesIO()
+    img.save(buffered, format="JPEG")
+    img_str = base64.b64encode(buffered.getvalue()).decode()
+    href = f'<a href="data:file/jpg;base64,{img_str}">Download Image</a>'
+    return href
 
 # # Create a folder for the TF hub module.
 # $ mkdir /tmp/moduleA
