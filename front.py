@@ -9,6 +9,9 @@ from PIL import Image
 st.markdown("<h1 style='text-align: center;'>Image Regeneration</h1>",unsafe_allow_html=True)
 st.set_option("deprecation.showfileUploaderEncoding", False)
 
+st.text("")
+st.text("")
+
 # defines an h1 header
 st.sidebar.title("Style Transfer")
 
@@ -29,12 +32,14 @@ if image is not None:
 	    st.image(image)
     
 if image is not None:
-    with col2:
+    with col1:
         img = Image.open(os.path.abspath(os.getcwd())+"/styles/"+STYLES[style])
         st.image(img)
 
 if st.sidebar.button("Style Transfer"):
     with col3:
+        st.text("")
+        st.text("")
     # displays a button
         if image is not None and style is not None:
             with st.spinner('Applying Magic'):
