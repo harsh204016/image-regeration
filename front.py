@@ -29,6 +29,7 @@ if image is not None:
 	with col1:
 	    st.image(image)
     
+if image is not None:
     with col2:
         st.image(STYLES[style])
 
