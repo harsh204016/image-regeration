@@ -33,6 +33,7 @@ if image is not None:
     with col2:
         st.image(STYLES[style])
 
+if image is not None:
     with col3:
     # displays a button
         if st.sidebar.button("Style Transfer"):
@@ -49,15 +50,16 @@ if image is not None:
 
             # result.save("generated.jpg")
 
-col1,col2,col3 = st.columns(3)
-with col2:
-    with open("image.jpg", "rb") as file:
-        btn = st.download_button(
-                label="Download image",
-                data=file,
-                file_name="image.jpg",
-                mime="image/jpg"
-        )
+if image_path is not None:
+    col1,col2,col3 = st.columns(3)
+    with col2:
+        with open("image.jpg", "rb") as file:
+            btn = st.download_button(
+                    label="Download image",
+                    data=file,
+                    file_name="image.jpg",
+                    mime="image/jpg"
+            )
 
         
         
