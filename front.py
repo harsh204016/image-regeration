@@ -18,8 +18,9 @@ st.sidebar.title("Style Transfer")
 image = st.sidebar.file_uploader("Choose an image",)
 
 col1,col2,col3 = st.columns([1,1,2])
-with col1:
-    st.image(image)
+if image is not None:
+	with col1:
+	    st.image(image)
 
 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
