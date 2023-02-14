@@ -8,7 +8,6 @@ from config import STYLES , generate_style
 from PIL import Image
 
 st.markdown("<h1 style='text-align: center;'>Image Regeneration</h1>",unsafe_allow_html=True)
-
 st.set_option("deprecation.showfileUploaderEncoding", False)
 
 # defines an h1 header
@@ -19,6 +18,7 @@ image = st.sidebar.file_uploader("Choose an image",)
 
 col1,col2,col3 = st.columns([1,1,2])
 
+image_path = ""
 
 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
@@ -50,7 +50,7 @@ if image is not None:
 
             # result.save("generated.jpg")
 
-if image_path is not None:
+if image_path !="":
     col1,col2,col3 = st.columns(3)
     with col2:
         with open("image.jpg", "rb") as file:
