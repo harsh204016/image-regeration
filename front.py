@@ -1,7 +1,6 @@
 import streamlit as st
-import requests
-import json
 import numpy as np
+import os
 
 #image
 from config import STYLES , generate_style 
@@ -31,22 +30,22 @@ if image is not None:
     
 if image is not None:
     with col2:
-        st.image(STYLES[style])
+        img = Image.open(os.path.abspath(os.getcwd())+"/styles/"+STYLES[style])
+        st.image(img)
 
-if image is not None:
+if st.sidebar.button("Style Transfer"):
     with col3:
     # displays a button
-        if st.sidebar.button("Style Transfer"):
-            if image is not None and style is not None:
-                with st.spinner('Applying Magic'):
-                    style_image = generate_style(style,image)
-                st.image(style_image)
-            
-            print(type(style_image))
+        if image is not None and style is not None:
+            with st.spinner('Applying Magic'):
+                style_image = generate_style(style,image)
+            st.image(style_image)
+        
+        print(type(style_image))
 
-            img = Image.fromarray(np.uint8(style_image*255))
-            img.save("image.jpg")
-            image_path = "image.jpg"
+        img = Image.fromarray(np.uint8(style_image*255))
+        img.save("image.jpg")
+        image_path = "image.jpg"
 
             # result.save("generated.jpg")
 
