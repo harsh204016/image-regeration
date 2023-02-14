@@ -18,33 +18,35 @@ st.sidebar.title("Style Transfer")
 image = st.sidebar.file_uploader("Choose an image",)
 
 col1,col2,col3 = st.columns([1,1,2])
-if image is not None:
-	with col1:
-	    st.image(image)
+
 
 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 # displays the select widget for the styles
 style = st.sidebar.selectbox("Select your style",[i for i in STYLES.keys()])
 
-with col2:
-    st.image(STYLES[style])
+if image is not None:
+	with col1:
+	    st.image(image)
+    
+    with col2:
+        st.image(STYLES[style])
 
-with col3:
-# displays a button
-    if st.sidebar.button("Style Transfer"):
-        if image is not None and style is not None:
-            with st.spinner('Applying Magic'):
-                style_image = generate_style(style,image)
-            st.image(style_image)
-        
-        print(type(style_image))
+    with col3:
+    # displays a button
+        if st.sidebar.button("Style Transfer"):
+            if image is not None and style is not None:
+                with st.spinner('Applying Magic'):
+                    style_image = generate_style(style,image)
+                st.image(style_image)
+            
+            print(type(style_image))
 
-        img = Image.fromarray(np.uint8(style_image*255))
-        img.save("image.jpg")
-        image_path = "image.jpg"
+            img = Image.fromarray(np.uint8(style_image*255))
+            img.save("image.jpg")
+            image_path = "image.jpg"
 
-        # result.save("generated.jpg")
+            # result.save("generated.jpg")
 
 col1,col2,col3 = st.columns(3)
 with col2:
